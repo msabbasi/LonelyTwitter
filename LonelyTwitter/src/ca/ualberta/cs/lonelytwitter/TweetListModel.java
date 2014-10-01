@@ -3,6 +3,7 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class TweetListModel
@@ -45,7 +46,7 @@ public class TweetListModel
 		tweets.remove(lonelyTweetModel);
 	}
 
-	public ArrayList<LonelyTweetModel> getTweets()
+	public List<String> getTweets()
 	{
 		Collections.sort(tweets, new Comparator<LonelyTweetModel>() {
 
@@ -55,7 +56,13 @@ public class TweetListModel
 			}
 			
 		});
-		return tweets;
+		List<String> tweetsList = new ArrayList<String>();
+		
+		for (int i=0;i<tweets.size(); i++){
+			tweetsList.add(tweets.get(i).getText());
+		}
+		
+		return tweetsList;
 	}
 
 }

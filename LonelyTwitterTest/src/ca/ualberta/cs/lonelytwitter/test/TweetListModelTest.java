@@ -1,6 +1,7 @@
 package ca.ualberta.cs.lonelytwitter.test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ca.ualberta.cs.lonelytwitter.LonelyTweetModel;
 import ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity;
@@ -71,11 +72,11 @@ public class TweetListModelTest extends ActivityInstrumentationTestCase2<LonelyT
 		LonelyTweetModel tweet2 = new LonelyTweetModel("test2");
 		tlm.addTweet(tweet1);
 		tlm.addTweet(tweet2);
-		ArrayList<LonelyTweetModel> tweets = tlm.getTweets();
+		List<String> tweets = tlm.getTweets();
 		assertNotNull(tweets);
 		assertTrue(tweets.size() == 2);
-		assertSame(tweets.get(0), tweet1);
-		assertSame(tweets.get(1), tweet2);
+		assertEquals(tweets.get(0), "test1");
+		assertEquals(tweets.get(1), "test2");
 	}
 
 }
