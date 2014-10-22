@@ -16,5 +16,70 @@ public class IntentReaderActivityTest extends
     }
 
 //TODO: Add your code here:
+    public void testSendText() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "testing send");
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	assertEquals(ira.getText(), "testing send");
+    }
+    
+    public void testDisplayText() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "testing display");
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	
+    	TextView textView = (TextView) ira.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText);
+    	assertEquals(textView.getText(), "testing display");
+    }
+    
+    public void testDoubleText() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "testing double text");
+    	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.DOUBLE);
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	
+    	assertEquals(ira.getText(), "testing double texttesting double text");
+    }
+    
+    public void testReverseText() {
+    	Intent intent = new Intent();
+    	intent.putExtra(IntentReaderActivity.TEXT_TO_TRANSFORM_KEY, "testing reverse text");
+    	intent.putExtra(IntentReaderActivity.MODE_OF_TRANSFORM_KEY, IntentReaderActivity.REVERSE);
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	
+    	assertEquals(ira.getText(), "txet esrever gnitset");
+    }
+    
+    public void testDefaultText() {
+    	Intent intent = new Intent();
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	
+    	assertEquals(ira.getText(), "default text");
+    }
+    
+    public void testTextViewVisible() {
+    	Intent intent = new Intent();
+    	
+    	setActivityIntent(intent);
+    	
+    	IntentReaderActivity ira = getActivity();
+    	
+    	ViewAsserts.assertOnScreen(ira.getWindow().getDecorView(), ira.findViewById(ca.ualberta.cs.lonelytwitter.R.id.intentText));
+    }
        
 }
